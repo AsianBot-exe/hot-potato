@@ -14,6 +14,10 @@ let player_0_has_potato = -1
 let player_1_has_potato = -1
 let player_2_has_potato = -1
 let player_3_has_potato = -1
+let player_0 = player_0_has_potato == 1 && microbit_id == 0
+let player_1 = player_1_has_potato == 1 && microbit_id == 1
+let player_2 = player_2_has_potato == 1 && microbit_id == 2
+let player_3 = player_3_has_potato == 1 && microbit_id == 3
 let game_started = -1
 radio.setGroup(lobby_id)
 function on_button_pressed_b() {
@@ -22,16 +26,16 @@ function on_button_pressed_b() {
 
 function pass_potato() {
     
-    if (microbit_id == 0 && player_0_has_potato) {
+    if (player_0) {
         radio.sendValue("player_0_has_potato", -1)
         radio.sendValue("player_1_has_potato", 1)
-    } else if (microbit_id == 1 && player_1_has_potato) {
+    } else if (player_1) {
         radio.sendValue("player_1_has_potato", -1)
         radio.sendValue("player_2_has_potato", 1)
-    } else if (microbit_id == 2 && player_2_has_potato) {
+    } else if (player_2) {
         radio.sendValue("player_2_has_potato", -1)
         radio.sendValue("player_3_has_potato", 1)
-    } else if (microbit_id == 3 && player_3_has_potato) {
+    } else if (player_3) {
         radio.sendValue("player_3_has_potato", -1)
         radio.sendValue("player_0_has_potato", 1)
     }

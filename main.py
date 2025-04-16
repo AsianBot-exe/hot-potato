@@ -19,6 +19,11 @@ player_1_has_potato = -1
 player_2_has_potato = -1
 player_3_has_potato = -1
 
+player_0 = player_0_has_potato == 1 and microbit_id == 0
+player_1 = player_1_has_potato == 1 and microbit_id == 1
+player_2 = player_2_has_potato == 1 and microbit_id == 2
+player_3 = player_3_has_potato == 1 and microbit_id == 3
+
 game_started = -1
 
 radio.set_group(lobby_id)
@@ -32,18 +37,18 @@ def on_button_pressed_b():
     pass_potato()
 
 def pass_potato():
-    global microbit_id, player_0_has_potato, player_1_has_potato, player_2_has_potato, player_3_has_potato
+    global microbit_id, player_0, player_1, player_2, player_3
 
-    if microbit_id == 0 and player_0_has_potato:
+    if player_0:
         radio.send_value("player_0_has_potato", -1)
         radio.send_value("player_1_has_potato", 1)
-    elif microbit_id == 1 and player_1_has_potato:
+    elif player_1:
         radio.send_value("player_1_has_potato", -1)
         radio.send_value("player_2_has_potato", 1)
-    elif microbit_id == 2 and player_2_has_potato:
+    elif player_2:
         radio.send_value("player_2_has_potato", -1)
         radio.send_value("player_3_has_potato", 1)
-    elif microbit_id == 3 and player_3_has_potato:
+    elif player_3:
         radio.send_value("player_3_has_potato", -1)
         radio.send_value("player_0_has_potato", 1)
 
